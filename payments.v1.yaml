@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: Mywaypay
+  version: '1.0'
+  description: This document references ways in which one can use mywaypay services to intergrate invoice and payment notifications to their system with minimal effort
+  contact:
+    name: Imani Labs
+    url: imanilabs.com
+    email: isaac@imanilabs.com
+  license:
+    name: MIT
+    url: none
+  termsOfService: none
+servers:
+  - url: 'https://web.mywaypay.io/api/v1'
+    description: API server
+paths:
+  /oauth/token:
+    post:
+      summary: generate token
+      tags:
+        - Authentication
+        - Auth
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token_type:
+                    type: string
+                    default: Bearer
+                    example: Bearer
+                  expires_in:
+                    type: number
+                  access_token:
+                    type: string
+              examples: {}
+      operationId: post-oauth-token
+      description: Authenticate to mywaypay
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Content
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_key:
+                  type: string
+                client_secret:
+                  type: string
+        description: Pass the application authentication credentials to get auth token
+  /register:
+    post:
+      summary: Register callback URLs
+      tags:
+        - Register Callbacks
+      responses:
+        '202':
+          description: Accepted
+      operationId: post-register
+      description: Register endpoints to receive notifications of payments and invoice status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice:
+                  type: string
+                  format: uri
+                payment:
+                  type: string
+                  format: uri
+        description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      security:
+        - Authentication: []
+    parameters: []
+  /payment/stk:
+    post:
+      summary: STK payment
+      tags:
+        - STK
+        - payment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+      operationId: post-payment-stk
+      description: Initiate an stk payment request
+      security:
+        - Authentication: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: number
+                amount:
+                  type: number
+                reference:
+                  type: string
+                description:
+                  type: string
+        description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: ''
+          required: true
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
+components:
+  schemas: {}
+  securitySchemes:
+    Authentication:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://web.mywaypay.io/api/v1/oauth/token'
+          scopes: {}
+          refreshUrl: 'https://web.mywaypay.io/api/v1/oauth/token'
+      description: ''
+security:
+  - Authentication: []
