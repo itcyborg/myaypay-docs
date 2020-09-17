@@ -60,6 +60,40 @@ paths:
               required:
                 - client_key
         description: ''
+  /api/v1/stk:
+    post:
+      summary: Stk push
+      tags:
+        - stk
+        - Stk Initialization
+        - stk push
+      responses: {}
+      operationId: post-api-v1-stk
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                phone:
+                  type: string
+                reference:
+                  type: string
+                description:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - api
+              required:
+                - amount
+                - phone
+                - reference
+                - description
+                - type
+        description: ''
 components:
   schemas: {}
   securitySchemes:
@@ -67,9 +101,9 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: 'https://web.mywaypay.io/api/v1/oauth/token'
+          tokenUrl: 'https://web.mywaypay.io/api-token'
           scopes: {}
-          refreshUrl: 'https://web.mywaypay.io/api/v1/oauth/token'
+          refreshUrl: 'https://web.mywaypay.io/oauth/refresh'
       description: ''
 security:
   - Authentication: []
