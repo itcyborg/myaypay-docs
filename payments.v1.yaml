@@ -67,7 +67,24 @@ paths:
         - stk
         - Stk Initialization
         - stk push
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  MerchantRequestID:
+                    type: string
+                  CheckoutRequestID:
+                    type: string
+                  ResponseCode:
+                    type: string
+                  ResponseDescription:
+                    type: string
+                  CustomerMessage:
+                    type: string
       operationId: post-api-v1-stk
       requestBody:
         content:
