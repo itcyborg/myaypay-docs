@@ -12,19 +12,18 @@ info:
     url: none
   termsOfService: none
 servers:
-  - url: 'https://web.mywaypay.io/api/v1'
-    description: API server
+  - description: Sandbox
+    url: 'https://test.mywaypay.io'
 paths:
-  /oauth/token:
+  /api-token:
     post:
-      summary: generate token
+      summary: get access token
       tags:
-        - Authentication
-        - Auth
+        - authentication
+        - auth
       responses:
         '200':
-          description: OK
-          headers: {}
+          description: Ok
           content:
             application/json:
               schema:
@@ -32,23 +31,25 @@ paths:
                 properties:
                   token_type:
                     type: string
-                    default: Bearer
-                    example: Bearer
                   expires_in:
                     type: number
                   access_token:
                     type: string
-              examples: {}
-      operationId: post-oauth-token
-      description: Authenticate to mywaypay
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Content
+              examples:
+                auth response:
+                  value:
+                    token_type: Bearer
+                    expires_in: 86400
+                    access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMyIsImp0aSI6ImFkZmM3MWQ0NTkyMjJhODkxYjM3OGZlYzZhYTU2NzU4YzlmNjQyODgxMTMyZWYyMWMzNGFlN2UwMzJiY2Q5MjhhNzNjYzEzYWIzZGYxY2RiIiwiaWF0IjoxNjAwMzIyNzI1LCJuYmYiOjE2MDAzMjI3MjUsImV4cCI6MTYwMDQwOTEyNSwic3ViIjoiIiwic2NvcGVzIjpbXX0.XB0fUhuywWKj6RZRZ6yZsbPs0lpBl9pCLUr0ie4LkC1ApsED1AUkig0IheXxyTYORp3fCc9iipIfszCDt711xBpFaWzE5sDjiQoUG-XVa6NZvJv-XVOTpXl8PewuD1gIx2wWKzvRYg99Jbb93Szia3_8_ItlRQZH-Gac0dg-dZXhNtZwmGM1WBGiJHQD7G6EIgxPIZoiSYbg3mUqlM2cdp9JxirIRhJLjk1M52Vo2UMgISYTvzH2WBy-NZh7imCyKroLfkQRmrS_Z0jnHea7CwJpLP8ydJ5AOvChpd1-hDVSOAr2DeUn0DkgJqqRR8GEIolYyCyVbW7H9Z_M6zW0NKbIFSVOgpCE9AtZ1DxefudeRqg8XfB_hYoqJox7Q5Ox_oksx4fyRWUyX3eWDSCcdHVdbO5ZxYOqu6NIXjktTuqOy6l5nCpvl-zOcwtumduzSEF4Ln9ODMHEt06hl2hZldC6h58ovR1ZkF0oOCROLa82xzlykfpqZluKdBQR9Qjs2QSQNCYWdiSh8KTmjf5HTR7uFu2xoPRv7JKZNgTo80HI4htOhVrvVA34B_m6IDEIgRuUIwZPaYVsoB0KTs-HCcyt7ObUfTJ9ql6mUi3TSdMJzeL290NHGsBdHiZolbtdSrbd8bcDspCLkspUVAZ3EPlcb3KCGXPB3NZFxi4X0HI
+      operationId: post-api-token
+      description: Exchange the client-secret and client-key for an access token.
       requestBody:
         content:
           application/json:
+            schema:
+              type: object
+              properties: {}
+          application/xml:
             schema:
               type: object
               properties:
@@ -56,85 +57,9 @@ paths:
                   type: string
                 client_secret:
                   type: string
-        description: Pass the application authentication credentials to get auth token
-  /register:
-    post:
-      summary: Register callback URLs
-      tags:
-        - Register Callbacks
-      responses:
-        '202':
-          description: Accepted
-      operationId: post-register
-      description: Register endpoints to receive notifications of payments and invoice status
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                invoice:
-                  type: string
-                  format: uri
-                payment:
-                  type: string
-                  format: uri
+              required:
+                - client_key
         description: ''
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-      security:
-        - Authentication: []
-    parameters: []
-  /payment/stk:
-    post:
-      summary: STK payment
-      tags:
-        - STK
-        - payment
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: string
-            text/plain:
-              schema:
-                type: string
-      operationId: post-payment-stk
-      description: Initiate an stk payment request
-      security:
-        - Authentication: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                phone:
-                  type: number
-                amount:
-                  type: number
-                reference:
-                  type: string
-                description:
-                  type: string
-        description: ''
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-          description: ''
-          required: true
-        - schema:
-            type: string
-            default: application/json
-          in: header
-          name: Content-Type
 components:
   schemas: {}
   securitySchemes:
