@@ -196,9 +196,6 @@ paths:
       operationId: get-api-v1-quotation
     post:
       summary: save an invoice
-      tags:
-        - invoices
-        - invoice
       responses: {}
       operationId: post-api-v1-quotation
       description: Submit a quotation
@@ -249,6 +246,9 @@ paths:
               required:
                 - items
         description: ''
+      tags:
+        - quotation
+        - quotations
     delete:
       summary: delete quotation
       tags:
@@ -269,3 +269,7 @@ components:
       description: ''
 security:
   - Authentication: []
+tags:
+  - name: invoices
+  - name: quotation
+  - name: quotations
