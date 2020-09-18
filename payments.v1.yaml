@@ -195,7 +195,7 @@ paths:
       responses: {}
       operationId: get-api-v1-quotation
     post:
-      summary: save an invoice
+      summary: save a quotation
       responses: {}
       operationId: post-api-v1-quotation
       description: Submit a quotation
