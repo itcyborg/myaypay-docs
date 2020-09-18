@@ -111,6 +111,75 @@ paths:
                 - description
                 - type
         description: ''
+  /api/v1/invoice:
+    get:
+      summary: get all invoices
+      tags:
+        - invoices
+        - invoice
+      responses: {}
+      operationId: get-api-v1-invoice
+    post:
+      summary: save an invoice
+      tags:
+        - invoices
+        - invoice
+      responses: {}
+      operationId: post-api-v1-invoice
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      units:
+                        type: string
+                      discountByPercent:
+                        type: string
+                      tax:
+                        type: string
+                      discount:
+                        type: string
+                      taxByPercent:
+                        type: string
+                      quantity:
+                        type: string
+                      unit_price:
+                        type: string
+                    required:
+                      - name
+                      - quantity
+                      - unit_price
+                group:
+                  type: number
+                  description: |
+                    customer group id
+                customers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      email:
+                        type: string
+              required:
+                - items
+    delete:
+      summary: delete an invoice
+      tags:
+        - invoices
+        - invoice
+      responses: {}
+      operationId: delete-api-v1-invoice
 components:
   schemas: {}
   securitySchemes:
