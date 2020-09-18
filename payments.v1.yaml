@@ -111,7 +111,7 @@ paths:
                 - description
                 - type
         description: ''
-  /api/v1/invoice:
+  /api/v1/invoice/:
     get:
       summary: get all invoices
       tags:
@@ -180,6 +180,12 @@ paths:
         - invoice
       responses: {}
       operationId: delete-api-v1-invoice
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        description: ''
 components:
   schemas: {}
   securitySchemes:
