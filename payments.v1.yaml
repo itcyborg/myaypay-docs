@@ -273,8 +273,6 @@ paths:
 components:
   schemas: {}
   securitySchemes: {}
-security:
-  - Authentication: []
 tags:
   - name: invoices
   - name: quotation
