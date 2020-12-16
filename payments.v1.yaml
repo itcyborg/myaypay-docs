@@ -48,7 +48,11 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                client_key:
+                  type: string
+                client_secret:
+                  type: string
           application/xml:
             schema:
               type: object
