@@ -14,6 +14,8 @@ info:
 servers:
   - description: Sandbox
     url: 'https://test.mywaypay.io'
+  - url: 'https://web.mywaypay.io'
+    description: Live server
 paths:
   /api-token:
     post:
