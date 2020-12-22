@@ -291,6 +291,43 @@ paths:
         in: path
         required: true
         description: Invoice id
+  /api/v1/callback:
+    get:
+      summary: Show the registered callback
+      tags:
+        - callbacks
+        - callback
+      responses: {}
+      operationId: get-api-v1-callback
+    post:
+      summary: Post a new callback
+      tags:
+        - callbacks
+        - callback
+      responses: {}
+      operationId: post-api-v1-callback
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payment:
+                  type: string
+                  format: uri
+                invoice:
+                  type: string
+                  format: uri
+      description: Create a new callback or update an existing one
+    delete:
+      summary: Remove a callback
+      tags:
+        - callbacks
+        - callback
+      responses: {}
+      operationId: delete-api-v1-callback
+    parameters: []
 components:
   schemas: {}
   securitySchemes: {}
