@@ -171,6 +171,8 @@ paths:
                         type: string
                       email:
                         type: string
+                send_invoice:
+                  type: boolean
               required:
                 - items
     delete:
