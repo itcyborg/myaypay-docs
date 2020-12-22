@@ -276,6 +276,21 @@ paths:
         - quotations
       responses: {}
       operationId: delete-api-v1-quotation
+  '/api/v1/invoice/send/{id}':
+    post:
+      summary: Send invoice to customer
+      tags:
+        - send invoice
+      responses: {}
+      operationId: post-api-v1-invoice-send
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Invoice id
 components:
   schemas: {}
   securitySchemes: {}
