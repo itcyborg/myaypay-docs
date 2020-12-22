@@ -48,7 +48,11 @@ paths:
           application/json:
             schema:
               type: object
-              properties: {}
+              properties:
+                client_key:
+                  type: string
+                client_secret:
+                  type: string
           application/xml:
             schema:
               type: object
@@ -58,6 +62,20 @@ paths:
                 client_secret:
                   type: string
               required:
+                - client_key
+          multipart/form-data:
+            schema:
+              description: ''
+              type: object
+              properties:
+                client_secret:
+                  type: string
+                  minLength: 1
+                client_key:
+                  type: string
+                  minLength: 1
+              required:
+                - client_secret
                 - client_key
         description: ''
   /api/v1/stk:
@@ -260,17 +278,7 @@ paths:
       operationId: delete-api-v1-quotation
 components:
   schemas: {}
-  securitySchemes:
-    Authentication:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: 'https://web.mywaypay.io/api-token'
-          scopes: {}
-          refreshUrl: 'https://web.mywaypay.io/oauth/refresh'
-      description: ''
-security:
-  - Authentication: []
+  securitySchemes: {}
 tags:
   - name: invoices
   - name: quotation
