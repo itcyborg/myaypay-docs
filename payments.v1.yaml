@@ -16,6 +16,8 @@ servers:
     url: 'https://test.mywaypay.io'
   - url: 'https://web.mywaypay.io'
     description: Live server
+  - url: 'http://127.0.0.1'
+    description: Local Server
 paths:
   /api-token:
     post:
@@ -124,12 +126,15 @@ paths:
                   type: string
                   enum:
                     - api
+                callback:
+                  type: string
               required:
                 - amount
                 - phone
                 - reference
                 - description
                 - type
+                - callback
         description: ''
   api/v1/invoice/:
     get:
@@ -330,6 +335,57 @@ paths:
       responses: {}
       operationId: delete-api-v1-callback
     parameters: []
+  /api/v1/sms:
+    get:
+      summary: Retrieve list of messages
+      tags:
+        - messaging
+      responses: {}
+      operationId: get-api-v1-sms
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Accept
+          description: application/json
+    post:
+      summary: Send a new set of messages
+      tags:
+        - messaging
+      responses: {}
+      operationId: post-api-v1-sms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                phone:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: number
+                        description: Phone Numbers
+                        minimum: 9
+                        maximum: 10
+                        example: 710012542
+                        exclusiveMinimum: true
+                        exclusiveMaximum: true
+                    required:
+                      - value
+                message:
+                  type: string
+                  minLength: 1
+              required:
+                - phone
+                - message
 components:
   schemas: {}
   securitySchemes: {}
