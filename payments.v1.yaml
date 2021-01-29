@@ -21,7 +21,7 @@ servers:
 paths:
   /api-token:
     post:
-      summary: get access token
+      summary: Retrieve Access Token
       tags:
         - authentication
         - auth
@@ -45,8 +45,8 @@ paths:
                     token_type: Bearer
                     expires_in: 86400
                     access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxMyIsImp0aSI6ImFkZmM3MWQ0NTkyMjJhODkxYjM3OGZlYzZhYTU2NzU4YzlmNjQyODgxMTMyZWYyMWMzNGFlN2UwMzJiY2Q5MjhhNzNjYzEzYWIzZGYxY2RiIiwiaWF0IjoxNjAwMzIyNzI1LCJuYmYiOjE2MDAzMjI3MjUsImV4cCI6MTYwMDQwOTEyNSwic3ViIjoiIiwic2NvcGVzIjpbXX0.XB0fUhuywWKj6RZRZ6yZsbPs0lpBl9pCLUr0ie4LkC1ApsED1AUkig0IheXxyTYORp3fCc9iipIfszCDt711xBpFaWzE5sDjiQoUG-XVa6NZvJv-XVOTpXl8PewuD1gIx2wWKzvRYg99Jbb93Szia3_8_ItlRQZH-Gac0dg-dZXhNtZwmGM1WBGiJHQD7G6EIgxPIZoiSYbg3mUqlM2cdp9JxirIRhJLjk1M52Vo2UMgISYTvzH2WBy-NZh7imCyKroLfkQRmrS_Z0jnHea7CwJpLP8ydJ5AOvChpd1-hDVSOAr2DeUn0DkgJqqRR8GEIolYyCyVbW7H9Z_M6zW0NKbIFSVOgpCE9AtZ1DxefudeRqg8XfB_hYoqJox7Q5Ox_oksx4fyRWUyX3eWDSCcdHVdbO5ZxYOqu6NIXjktTuqOy6l5nCpvl-zOcwtumduzSEF4Ln9ODMHEt06hl2hZldC6h58ovR1ZkF0oOCROLa82xzlykfpqZluKdBQR9Qjs2QSQNCYWdiSh8KTmjf5HTR7uFu2xoPRv7JKZNgTo80HI4htOhVrvVA34B_m6IDEIgRuUIwZPaYVsoB0KTs-HCcyt7ObUfTJ9ql6mUi3TSdMJzeL290NHGsBdHiZolbtdSrbd8bcDspCLkspUVAZ3EPlcb3KCGXPB3NZFxi4X0HI
-      operationId: post-api-token
-      description: Exchange the client-secret and client-key for an access token.
+      operationId: Authenticate
+      description: Retrieve the access token by providing the client secret and client key.
       requestBody:
         content:
           application/json:
@@ -84,7 +84,7 @@ paths:
         description: ''
   /api/v1/stk:
     post:
-      summary: Stk push
+      summary: MPesa Express (STK Push)
       tags:
         - stk
         - Stk Initialization
@@ -215,17 +215,18 @@ paths:
         description: ''
   /api/v1/quotation:
     get:
-      summary: list quotations
+      summary: Retrieve Quotations
       tags:
         - quotation
         - quotations
       responses: {}
       operationId: get-api-v1-quotation
+      description: Retrieve a collection of quotations from the authenticated account.
     post:
-      summary: save a quotation
+      summary: Save a Quotation
       responses: {}
       operationId: post-api-v1-quotation
-      description: Submit a quotation
+      description: Create a new quotation.
       requestBody:
         content:
           application/json:
@@ -277,7 +278,7 @@ paths:
         - quotation
         - quotations
     delete:
-      summary: delete quotation
+      summary: Delete a Quotation
       tags:
         - quotation
         - quotations
