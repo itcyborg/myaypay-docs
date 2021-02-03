@@ -430,6 +430,54 @@ paths:
         - Wallets
       responses: {}
       operationId: get-api-v1-wallets
+  /api/v1/group:
+    get:
+      summary: List customer groups
+      tags:
+        - Customer group
+        - billing group
+      responses: {}
+      operationId: get-api-v1-groups
+    post:
+      summary: Create a new customer group
+      tags:
+        - Customer group
+        - billing group
+      responses: {}
+      operationId: post-api-v1-groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      phone_number:
+                        type:
+                          - number
+                          - string
+                    required:
+                      - email
+                      - name
+                name:
+                  type: string
+                description:
+                  type: string
+                '':
+                  type: string
+              required:
+                - customers
+                - name
+                - description
+    parameters: []
 components:
   schemas: {}
   securitySchemes: {}
