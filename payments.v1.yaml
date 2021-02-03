@@ -386,6 +386,42 @@ paths:
               required:
                 - phone
                 - message
+  /api/v1/withdraw:
+    post:
+      summary: Withdraw from Wallet
+      tags: []
+      responses: {}
+      operationId: post-api-v1-withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                wallet_id:
+                  type: number
+                channel:
+                  type: string
+                  minLength: 1
+                amount:
+                  type: number
+                account:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - wallet_id
+                - channel
+                - amount
+                - account
+                - password
+          application/xml:
+            schema:
+              type: object
+              properties: {}
 components:
   schemas: {}
   securitySchemes: {}
