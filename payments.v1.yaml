@@ -423,6 +423,13 @@ paths:
             schema:
               type: object
               properties: {}
+  /api/v1/wallets:
+    get:
+      summary: List all the user's wallets
+      tags:
+        - Wallets
+      responses: {}
+      operationId: get-api-v1-wallets
 components:
   schemas: {}
   securitySchemes: {}
