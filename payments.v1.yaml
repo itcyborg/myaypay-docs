@@ -430,6 +430,33 @@ paths:
         - Wallets
       responses: {}
       operationId: get-api-v1-wallets
+    post:
+      summary: ''
+      operationId: post-api-v1-wallets
+      responses:
+        '200':
+          description: OK
+      description: 'Create wallet '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                slug:
+                  type: string
+                  minLength: 1
+                description:
+                  type: string
+                  minLength: 1
+              required:
+                - name
+                - slug
+                - description
   /api/v1/group:
     get:
       summary: List customer groups
