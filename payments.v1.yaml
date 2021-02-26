@@ -390,6 +390,124 @@ paths:
               required:
                 - phone
                 - message
+  /api/v1/withdraw:
+    post:
+      summary: Withdraw from Wallet
+      tags: []
+      responses: {}
+      operationId: post-api-v1-withdraw
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                wallet_id:
+                  type: number
+                channel:
+                  type: string
+                  minLength: 1
+                amount:
+                  type: number
+                account:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - wallet_id
+                - channel
+                - amount
+                - account
+                - password
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+  /api/v1/wallets:
+    get:
+      summary: List all the user's wallets
+      tags:
+        - Wallets
+      responses: {}
+      operationId: get-api-v1-wallets
+    post:
+      summary: ''
+      operationId: post-api-v1-wallets
+      responses:
+        '200':
+          description: OK
+      description: 'Create wallet '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                slug:
+                  type: string
+                  minLength: 1
+                description:
+                  type: string
+                  minLength: 1
+              required:
+                - name
+                - slug
+                - description
+  /api/v1/group:
+    get:
+      summary: List customer groups
+      tags:
+        - Customer group
+        - billing group
+      responses: {}
+      operationId: get-api-v1-groups
+    post:
+      summary: Create a new customer group
+      tags:
+        - Customer group
+        - billing group
+      responses: {}
+      operationId: post-api-v1-groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      phone_number:
+                        type:
+                          - number
+                          - string
+                    required:
+                      - email
+                      - name
+                name:
+                  type: string
+                description:
+                  type: string
+                '':
+                  type: string
+              required:
+                - customers
+                - name
+                - description
+    parameters: []
 components:
   schemas: {}
   securitySchemes: {}
