@@ -13,11 +13,9 @@ info:
   termsOfService: none
 servers:
   - description: Sandbox
-    url: 'https://test.mywaypay.io'
+    url: 'https://sandbox.mywaypay.io'
   - url: 'https://web.mywaypay.io'
     description: Live server
-  - url: 'http://127.0.0.1'
-    description: Local Server
 paths:
   /api-token:
     post:
@@ -508,6 +506,104 @@ paths:
                 - name
                 - description
     parameters: []
+  '/pgw/payment/checkout/{context}':
+    get:
+      summary: Checkout
+      tags: []
+      responses: {}
+      operationId: get-pgw-payment-checkout-default
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: string
+                order_no:
+                  type: string
+                reference:
+                  type: string
+                merchant_id:
+                  type: number
+                email:
+                  type: string
+                currency_code:
+                  type: string
+                redirect_url:
+                  type: string
+                callback_url:
+                  type: string
+      description: |-
+        Context to be used is : default
+
+        Confirm with our support first to get the correct context
+      parameters: []
+    post:
+      summary: Checkout
+      tags: []
+      responses: {}
+      operationId: post-pgw-payment-checkout-default
+      description: |-
+        Context to be used is : default
+
+        Confirm with our support first to get the correct context
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                amount:
+                  type: string
+                  minLength: 1
+                order_no:
+                  type: string
+                  minLength: 1
+                reference:
+                  type: string
+                  minLength: 1
+                merchant_id:
+                  type: string
+                  minLength: 1
+                email:
+                  type: string
+                  minLength: 1
+                currency_code:
+                  type: string
+                  minLength: 1
+                redirect_url:
+                  type: string
+                  minLength: 1
+                callback_url:
+                  type: string
+                  minLength: 1
+              required:
+                - amount
+                - order_no
+                - reference
+                - merchant_id
+                - email
+                - currency_code
+                - redirect_url
+                - callback_url
+              x-examples:
+                example-1:
+                  amount: string
+                  order_no: string
+                  reference: string
+                  merchant_id: string
+                  email: string
+                  currency_code: string
+                  redirect_url: string
+                  callback_url: string
+    parameters:
+      - schema:
+          type: string
+        name: context
+        in: path
+        required: true
 components:
   schemas: {}
   securitySchemes: {}
